@@ -1,0 +1,17 @@
+# Dependências
+node_modules/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Arquivos de dados de execução local (gerados dinamicamente pela CLI)
+tarefas.json
+*.tmp
+*.log
+
+# Arquivos de ambiente e SO
+.env
+.DS_Store
+Thumbs.db

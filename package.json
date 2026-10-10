@@ -1,0 +1,25 @@
+{
+  "name": "dplay-tarefas-cli",
+  "version": "1.0.0",
+  "description": "Aplicação de linha de comando para gerenciamento de tarefas no terminal",
+  "type": "module",
+  "main": "src/cli/app.js",
+  "bin": {
+    "tarefas": "./bin/tarefas.js"
+  },
+  "scripts": {
+    "start": "node ./bin/tarefas.js",
+    "test": "node --test tests/**/*.test.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "cli",
+    "tarefas",
+    "task-manager",
+    "terminal"
+  ],
+  "author": "",
+  "license": "MIT"
+}
