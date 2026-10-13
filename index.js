@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import * as taskService from './services/taskService.js';
 
 const args = process.argv.slice(2);
