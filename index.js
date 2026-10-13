@@ -64,15 +64,27 @@ switch (command) {
         }
         break;
 
+    case 'editar':
+        try {
+            const id = args[1];
+            const novaDescricao = args[2];
+            const tarefaEditada = await taskService.editarTarefa(id, novaDescricao);
+            console.log(`Tarefa #${tarefaEditada.id} atualizada.`);
+        } catch (error) {
+            console.log(`Erro ao editar tarefa: ${error.message}`);
+        }
+        break;
+
     case 'ajuda':
     case undefined:
         console.log(`
 Comandos disponíveis:
-  * adicionar <descrição>       - Adiciona uma nova tarefa
-  * listar [pendente|concluida] - Lista todas as tarefas ou filtra por status
-  * concluir <id>               - Marca uma tarefa como concluída
-  * remover <id>                - Remove uma tarefa pelo ID
-  * ajuda                       - Exibe esta mensagem de ajuda
+  * adicionar <descrição>            - Adiciona uma nova tarefa
+  * listar [pendente|concluida]      - Lista todas as tarefas ou filtra por status
+  * concluir <id>                    - Marca uma tarefa como concluída
+  * remover <id>                     - Remove uma tarefa pelo ID
+  * editar <id> "<nova descrição>"   - Edita a descrição de uma tarefa
+  * ajuda                            - Exibe esta mensagem de ajuda
         `.trim());
         break;
 

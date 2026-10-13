@@ -99,3 +99,30 @@ export async function removerTarefa(id) {
 
     return tarefaRemovida;
 }
+
+export async function editarTarefa(id, novaDescricao) {
+    if (id === undefined || id === null || String(id).trim() === '') {
+        throw new Error('O ID da tarefa deve ser informado.');
+    }
+
+    const idNumero = Number(id);
+    if (!Number.isInteger(idNumero) || idNumero <= 0) {
+        throw new Error('O ID da tarefa deve ser um número inteiro válido.');
+    }
+
+    if (!novaDescricao || novaDescricao.trim() === '') {
+        throw new Error('A nova descrição da tarefa não pode ser vazia.');
+    }
+
+    const tasks = await lerTarefas();
+    const task = tasks.find(t => t.id === idNumero);
+
+    if (!task) {
+        throw new Error(`Tarefa com ID #${idNumero} não encontrada.`);
+    }
+
+    task.descricao = novaDescricao.trim();
+    await salvarTarefas(tasks);
+
+    return task;
+}
