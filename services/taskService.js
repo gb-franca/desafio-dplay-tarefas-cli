@@ -29,3 +29,27 @@ export async function adicionarTarefa(descricao) {
     return newTask;
 
 }
+
+export async function listarTarefas(filtro) {
+    const tasks = await lerTarefas();
+
+    if (!filtro) {
+        return tasks;
+    }
+
+    const filtroNormalizado = filtro.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+
+    if (filtroNormalizado === 'pendente' || filtroNormalizado === 'pendentes') {
+        return tasks.filter(t => t.status === 'pendente');
+    }
+
+    if (filtroNormalizado === 'concluida' || filtroNormalizado === 'concluidas') {
+        return tasks.filter(t => t.status === 'concluida');
+    }
+
+    if (filtroNormalizado === 'todas' || filtroNormalizado === 'todos') {
+        return tasks;
+    }
+
+    throw new Error(`Filtro "${filtro}" inválido. Utilize "pendente", "concluida" ou deixe em branco.`);
+}
