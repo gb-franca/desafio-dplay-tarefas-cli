@@ -53,3 +53,26 @@ export async function listarTarefas(filtro) {
 
     throw new Error(`Filtro "${filtro}" inválido. Utilize "pendente", "concluida" ou deixe em branco.`);
 }
+
+export async function concluirTarefa(id) {
+    if (id === undefined || id === null || String(id).trim() === '') {
+        throw new Error('O ID da tarefa deve ser informado.');
+    }
+
+    const idNumero = Number(id);
+    if (!Number.isInteger(idNumero) || idNumero <= 0) {
+        throw new Error('O ID da tarefa deve ser um número inteiro válido.');
+    }
+
+    const tasks = await lerTarefas();
+    const task = tasks.find(t => t.id === idNumero);
+
+    if (!task) {
+        throw new Error(`Tarefa com ID #${idNumero} não encontrada.`);
+    }
+
+    task.status = 'concluida';
+    await salvarTarefas(tasks);
+
+    return task;
+}

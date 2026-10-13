@@ -45,7 +45,13 @@ switch (command) {
         break;
 
     case 'concluir':
-        console.log('Comando concluir acionado. (Aguardando implementação da lógica)');
+        try {
+            const id = args[1];
+            const tarefaConcluida = await taskService.concluirTarefa(id);
+            console.log(`Tarefa #${tarefaConcluida.id} concluída.`);
+        } catch (error) {
+            console.log(`Erro ao concluir tarefa: ${error.message}`);
+        }
         break;
 
     case 'remover':
