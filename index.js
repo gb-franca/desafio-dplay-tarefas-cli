@@ -81,12 +81,12 @@ switch (command) {
     case undefined:
         console.log(`
 Comandos disponíveis:
-  * adicionar <descrição>            - Adiciona uma nova tarefa
-  * listar [pendente|concluida]      - Lista todas as tarefas ou filtra por status
-  * concluir <id>                    - Marca uma tarefa como concluída
-  * remover <id>                     - Remove uma tarefa pelo ID
-  * editar <id> "<nova descrição>"   - Edita a descrição de uma tarefa
-  * ajuda                            - Exibe esta mensagem de ajuda
+  * adicionar <descrição>       - Adiciona uma nova tarefa
+  * listar [pendente|concluida] - Lista todas as tarefas ou filtra por status
+  * concluir <id>               - Marca uma tarefa como concluída
+  * remover <id>                - Remove uma tarefa pelo ID
+  * editar <id> <nova descrição>- Edita a descrição de uma tarefa
+  * ajuda                       - Exibe esta mensagem de ajuda
         `.trim());
         break;
 

@@ -75,21 +75,23 @@ Exibe a lista de comandos e a sintaxe de cada um.
 - **Saída:**
   ```text
   Comandos disponíveis:
-    * adicionar <descrição>            - Adiciona uma nova tarefa
-    * listar [pendente|concluida]      - Lista todas as tarefas ou filtra por status
-    * concluir <id>                    - Marca uma tarefa como concluída
-    * remover <id>                     - Remove uma tarefa pelo ID
-    * editar <id> "<nova descrição>"   - Edita a descrição de uma tarefa
-    * ajuda                            - Exibe esta mensagem de ajuda
+    * adicionar <descrição>       - Adiciona uma nova tarefa
+    * listar [pendente|concluida] - Lista todas as tarefas ou filtra por status
+    * concluir <id>               - Marca uma tarefa como concluída
+    * remover <id>                - Remove uma tarefa pelo ID
+    * editar <id> <nova descrição>- Edita a descrição de uma tarefa
+    * ajuda                       - Exibe esta mensagem de ajuda
   ```
 
 ---
 
 ### 2. Adicionar uma tarefa
-Cria uma nova tarefa com status inicial `pendente` e data de criação atual.
-- **Entrada:**
+Cria uma nova tarefa com status inicial `pendente` e data de criação atual. A aplicação aceita descrições compostas tanto delimitadas por aspas quanto digitadas diretamente com espaços:
+- **Entrada (com ou sem aspas):**
   ```bash
   node index.js adicionar "Estudar Git"
+  # ou diretamente sem aspas:
+  node index.js adicionar Estudar Para EDB2
   ```
 - **Saída:**
   ```text
@@ -155,10 +157,12 @@ Ao listar novamente:
 ---
 
 ### 5. Editar a descrição de uma tarefa (Diferencial)
-Permite alterar a descrição de uma tarefa existente sem modificar seu ID, status ou data.
+Permite alterar a descrição de uma tarefa existente sem modificar seu ID, status ou data (suporta textos com ou sem aspas):
 - **Entrada:**
   ```bash
   node index.js editar 1 "Estudar Git e GitHub Avançado"
+  # ou diretamente sem aspas:
+  node index.js editar 1 Estudar Git e GitHub Avançado
   ```
 - **Saída:**
   ```text
@@ -260,6 +264,7 @@ Para manter o código limpo, testável e manutenível, o projeto foi estruturado
 ### Decisões tomadas
 - **Utilização de ES Modules (`"type": "module"`):** Adoção dos padrões mais modernos do ecossistema JavaScript (`import`/`export` e `top-level await`).
 - **Zero Dependências Externas (`Zero-dependency`):** Toda a CLI e os testes foram implementados utilizando ferramentas nativas do Node.js, mantendo o repositório leve, rápido de clonar e sem vulnerabilidades de pacotes externos.
+- **Flexibilidade e Usabilidade na Entrada de Argumentos:** Em vez de restringir a descrição ao argumento estático `args[1]`, utilizamos `args.slice(...).join(' ')`. Isso garante que descrições com múltiplas palavras funcionem perfeitamente tanto delimitadas por aspas quanto digitadas diretamente no terminal.
 - **Suporte a Executável Global:** Inclusão de hashbang `#!/usr/bin/env node` e mapeamento no campo `"bin"` do `package.json` para suportar tanto execução direta via script quanto instalação global com `npm link`.
 - **Git e Commits Semânticos:** O histórico de commits foi estruturado de forma granular e progressiva a cada funcionalidade e diferencial entregue, utilizando a convenção *Conventional Commits* (`feat:`, `test:`, `docs:`, `chore:`).
 
