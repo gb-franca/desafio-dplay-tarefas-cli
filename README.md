@@ -39,7 +39,7 @@ A aplicação conta com validação de dados de entrada, mensagens de erro descr
 
 2. **Acesse o diretório do projeto:**
    ```bash
-   cd dplay-tarefas-cli
+   cd desafio-dplay-tarefas-cli
    ```
 
 3. **Execução:**
