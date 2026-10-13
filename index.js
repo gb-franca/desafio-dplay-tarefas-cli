@@ -18,7 +18,7 @@ function formatarData(dataIso) {
 switch (command) {
     case 'adicionar':
         try {
-            const descricao = args[1];
+            const descricao = args.slice(1).join(' ');
             const tarefaAdcionada = await taskService.adicionarTarefa(descricao);
             console.log(`Tarefa #${tarefaAdcionada.id} adicionada`);
         } catch (error) {
@@ -69,7 +69,7 @@ switch (command) {
     case 'editar':
         try {
             const id = args[1];
-            const novaDescricao = args[2];
+            const novaDescricao = args.slice(2).join(' ');
             const tarefaEditada = await taskService.editarTarefa(id, novaDescricao);
             console.log(`Tarefa #${tarefaEditada.id} atualizada.`);
         } catch (error) {
