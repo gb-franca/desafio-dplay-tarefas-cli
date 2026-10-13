@@ -76,3 +76,26 @@ export async function concluirTarefa(id) {
 
     return task;
 }
+
+export async function removerTarefa(id) {
+    if (id === undefined || id === null || String(id).trim() === '') {
+        throw new Error('O ID da tarefa deve ser informado.');
+    }
+
+    const idNumero = Number(id);
+    if (!Number.isInteger(idNumero) || idNumero <= 0) {
+        throw new Error('O ID da tarefa deve ser um número inteiro válido.');
+    }
+
+    const tasks = await lerTarefas();
+    const indice = tasks.findIndex(t => t.id === idNumero);
+
+    if (indice === -1) {
+        throw new Error(`Tarefa com ID #${idNumero} não encontrada.`);
+    }
+
+    const [tarefaRemovida] = tasks.splice(indice, 1);
+    await salvarTarefas(tasks);
+
+    return tarefaRemovida;
+}

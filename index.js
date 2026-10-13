@@ -55,7 +55,13 @@ switch (command) {
         break;
 
     case 'remover':
-        console.log('Comando remover acionado. (Aguardando implementação da lógica)');
+        try {
+            const id = args[1];
+            const tarefaRemovida = await taskService.removerTarefa(id);
+            console.log(`Tarefa #${tarefaRemovida.id} removida.`);
+        } catch (error) {
+            console.log(`Erro ao remover tarefa: ${error.message}`);
+        }
         break;
 
     case 'ajuda':
